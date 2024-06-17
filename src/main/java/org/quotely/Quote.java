@@ -1,64 +1,40 @@
 package org.quotely;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Objects;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Quote {
-    private String quoteText;
-    private String quoteAuthor;
-    private String senderName;
-    private String senderLink;
-    private String quoteLink;
+    @JsonProperty("quoteText")
+    private String text;
+    @JsonProperty("quoteAuthor")
+    private String author;
 
     public Quote() {
         // default constructor
     }
 
-    public Quote(String quoteLink, String senderLink, String senderName, String quoteAuthor, String quoteText) {
-        this.quoteLink = quoteLink;
-        this.senderLink = senderLink;
-        this.senderName = senderName;
-        this.quoteAuthor = quoteAuthor;
-        this.quoteText = quoteText;
+    public Quote(String text, String author) {
+        this.text = text;
+        this.author = author;
     }
 
-    public String getQuoteText() {
-        return quoteText;
+    public String getText() {
+        return text;
     }
 
-    public void setQuoteText(String quoteText) {
-        this.quoteText = quoteText;
+    public void setText(String text) {
+        this.text = text;
     }
 
-    public String getQuoteAuthor() {
-        return quoteAuthor;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setQuoteAuthor(String quoteAuthor) {
-        this.quoteAuthor = quoteAuthor;
-    }
-
-    public String getSenderName() {
-        return senderName;
-    }
-
-    public void setSenderName(String senderName) {
-        this.senderName = senderName;
-    }
-
-    public String getSenderLink() {
-        return senderLink;
-    }
-
-    public void setSenderLink(String senderLink) {
-        this.senderLink = senderLink;
-    }
-
-    public String getQuoteLink() {
-        return quoteLink;
-    }
-
-    public void setQuoteLink(String quoteLink) {
-        this.quoteLink = quoteLink;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     @Override
@@ -66,22 +42,19 @@ public class Quote {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Quote quote = (Quote) o;
-        return Objects.equals(quoteText, quote.quoteText) && Objects.equals(quoteAuthor, quote.quoteAuthor) && Objects.equals(senderName, quote.senderName) && Objects.equals(senderLink, quote.senderLink) && Objects.equals(quoteLink, quote.quoteLink);
+        return Objects.equals(text, quote.text) && Objects.equals(author, quote.author);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(quoteText, quoteAuthor, senderName, senderLink, quoteLink);
+        return Objects.hash(text, author);
     }
 
     @Override
     public String toString() {
         return "Quote{" +
-                "quoteText='" + quoteText + '\'' +
-                ", quoteAuthor='" + quoteAuthor + '\'' +
-                ", senderName='" + senderName + '\'' +
-                ", senderLink='" + senderLink + '\'' +
-                ", quoteLink='" + quoteLink + '\'' +
+                "text='" + text + '\'' +
+                ", author='" + author + '\'' +
                 '}';
     }
 }
